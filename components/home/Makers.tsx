@@ -5,12 +5,20 @@ import { STORE_KEY } from '../../hooks/useStores';
 import type { ImageIcon, NaverMap } from '../../types/map';
 import type { Store } from '../../types/store';
 import Marker from './Marker';
+import useCurrentStore, {
+  CURRENT_STORE_KEY,
+} from '../../hooks/useCurrentStore';
 
 const Makers = () => {
   const { data: map } = useSWR<NaverMap>(MAP_KEY);
   const { data: stores } = useSWR<Store[]>(STORE_KEY);
+  const { data: currentStore } = useSWR<Store>(CURRENT_STORE_KEY);
+  const { setCurrentStore, clearCurrentStore } = useCurrentStore();
 
-  const generateStoreMarkerIcon = (markerIndex: number): ImageIcon => {
+  const generateStoreMarkerIcon = (
+    markerIndex: number,
+    isSelected: boolean
+  ): ImageIcon => {
     const MARKER_HEIGHT = 64;
     const MARKER_WIDTH = 54;
     const NUMBER_OF_MARKER = 13;
@@ -20,7 +28,7 @@ const Makers = () => {
     const SCALED_MARKER_HEIGHT = MARKER_HEIGHT * SCALE;
 
     return {
-      url: 'images/markers.png',
+      url: isSelected ? 'images/markers-selected.png' : 'images/markers.png',
       size: new naver.maps.Size(SCALED_MARKER_WIDTH, SCALED_MARKER_HEIGHT),
       origin: new naver.maps.Point(SCALED_MARKER_WIDTH * markerIndex, 0),
       scaledSize: new naver.maps.Size(
@@ -38,11 +46,24 @@ const Makers = () => {
           <Marker
             map={map}
             coordinates={store.coordinates}
-            icon={generateStoreMarkerIcon(store.season)}
+            icon={generateStoreMarkerIcon(store.season, false)}
             key={store.nid}
+            onClick={() => {
+              setCurrentStore(store);
+            }}
           />
         );
       })}
+
+      {currentStore && (
+        <Marker
+          map={map}
+          coordinates={currentStore.coordinates}
+          icon={generateStoreMarkerIcon(currentStore.season, true)}
+          onClick={clearCurrentStore}
+          key={currentStore.nid}
+        />
+      )}
     </>
   );
 };

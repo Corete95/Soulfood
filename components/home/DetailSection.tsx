@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import { CURRENT_STORE_KEY } from '@/hooks/useCurrentStore';
 import { Store } from '@/types/store';
 import exp from 'constants';
+import DetailContent from './DetailContent';
 
 const DetailSection = () => {
   const { data: currentStore } = useSWR<Store>(CURRENT_STORE_KEY);
@@ -27,6 +28,7 @@ const DetailSection = () => {
         {!currentStore && <p className={styles.title}>매장을 선택해주세요.</p>}
         {currentStore && <p className={styles.title}>{currentStore.name}</p>}
       </div>
+      <DetailContent currentStore={currentStore} expanded={expanded} />
     </div>
   );
 };

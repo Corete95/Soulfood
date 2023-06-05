@@ -13,13 +13,23 @@ interface Props {
 const StoreDetail: NextPage<Props> = ({ store }) => {
   const expanded = true;
 
+  const router = useRouter();
+  const { setCurrentStore } = useCurrentStore();
+
+  const goToMap = () => {
+    setCurrentStore(store);
+    router.push(`
+      /?zoom=15&lat=${store.coordinates[0]}&lng=${store.coordinates[1]}
+    `);
+  };
+
   return (
     <>
       <div className={`${styles.detailSection} ${styles.expanded}`}>
         <DetailHeader
           currentStore={store}
           expanded={expanded}
-          onClickArrow={() => {}}
+          onClickArrow={goToMap}
         />
         <DetailContent currentStore={store} expanded={expanded} />
       </div>

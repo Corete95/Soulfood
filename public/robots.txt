@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://next-map-dusky.vercel.app
+
+# Sitemaps
+Sitemap: https://next-map-dusky.vercel.app/sitemap.xml

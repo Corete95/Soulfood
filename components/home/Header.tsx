@@ -7,9 +7,11 @@ import styles from '../../styles/header.module.scss';
 import Header from '../common/Header';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
+import useToast from '../../hooks/useToast';
 
 const HomeHeader = () => {
   const { resetMapOptions, getMapOptions } = useMap();
+  const { showToast } = useToast();
   const router = useRouter();
 
   const replaceAndCopyUrl = useCallback(() => {
@@ -18,6 +20,8 @@ const HomeHeader = () => {
 
     router.replace(query);
     copy(location.origin + query);
+
+    showToast('위치를 복사했습니다.', 'success');
   }, [router, getMapOptions]);
 
   return (

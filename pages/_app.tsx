@@ -1,8 +1,10 @@
-import '@/styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
+import { ToastContainer } from 'react-toastify';
 import SEO from '../seo.config';
 import Script from 'next/script';
+import 'react-toastify/dist/ReactToastify.css';
+import '@/styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -25,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       <Component {...pageProps} />
+      <ToastContainer />
     </>
   );
 }

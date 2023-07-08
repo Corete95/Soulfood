@@ -4,6 +4,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import type { Store } from '../../types/store';
 import copy from 'copy-to-clipboard';
+import useToast from '../../hooks/useToast';
 
 interface Props {
   currentStore?: Store;
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const DetailHeader = ({ currentStore, expanded, onClickArrow }: Props) => {
+  const { showToast } = useToast();
+
   return (
     <div className={styles.header}>
       <button
@@ -30,6 +33,7 @@ const DetailHeader = ({ currentStore, expanded, onClickArrow }: Props) => {
             className={headerStyles.box}
             onClick={() => {
               copy(location.origin + '/' + currentStore.name);
+              showToast('위치를 복사했습니다.', 'success');
             }}
             aria-label="매장 페이지 주소 클립보드 복사"
           >

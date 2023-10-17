@@ -3,6 +3,7 @@ import type { Store } from '../../types/store';
 import Naver from 'public/images/naver.png';
 import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
 import styles from '../../styles/detail.module.scss';
+import useModals from '@/hooks/useModals';
 
 type Props = {
   currentStore?: Store;
@@ -10,7 +11,10 @@ type Props = {
 };
 
 const DetailContent = ({ currentStore, expanded }: Props) => {
+  const { modalOpen, chaheModal } = useModals();
+
   if (!currentStore) return null;
+
   return (
     <div
       className={`${styles.detailContent} ${expanded ? styles.expanded : ''}`}
@@ -27,9 +31,10 @@ const DetailContent = ({ currentStore, expanded }: Props) => {
               fill
               sizes="120px"
               placeholder="blur"
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'cover', cursor: 'pointer' }}
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO0WhFsDwADzwF2mLYSJgAAAABJRU5ErkJggg=="
               priority
+              onClick={() => chaheModal(true, image)}
             />
           </div>
         ))}

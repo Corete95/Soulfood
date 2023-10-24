@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import type { Marker } from '../../types/map';
+import type { Marker1 } from '../../types/map';
 
-const Marker = ({ map, coordinates, icon,onClick }: Marker): null => {
+var Marker = ({ map, coordinates, icon, onClick }: Marker1): null => {
   useEffect(() => {
     let marker: naver.maps.Marker | null = null;
     if (map) {
-      /** https://navermaps.github.io/maps.js.ncp/docs/tutorial-2-Marker.html */
       marker = new naver.maps.Marker({
         map: map,
         position: new naver.maps.LatLng(...coordinates),

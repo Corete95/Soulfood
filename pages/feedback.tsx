@@ -2,14 +2,17 @@ import { GetServerSideProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Header from '@/components/common/Header';
 import FeedbackSection from '@/components/feedback/FeedbackSection';
-import { getFeedbackListFromFirestore } from '@/firebase/feedback';
+import {
+  getFeedbackListFromFirestore,
+  getMapListFromFirestore,
+} from '@/firebase/feedback';
 import type { Feedback } from '../types/feedback';
 
 interface Props {
   initialFeedbackList: Feedback[];
 }
 
-export const FeedbackPage: NextPage<Props> = ({ initialFeedbackList }) => {
+export const FeedbackPage: NextPage<any> = ({ initialFeedbackList, test }) => {
   return (
     <>
       <NextSeo
@@ -39,6 +42,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       initialFeedbackList: await getFeedbackListFromFirestore(),
+      //test: await getMapListFromFirestore(),
     },
   };
 };

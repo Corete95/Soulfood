@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  compiler: { styledComponents: true },
   images: {
     domains: ['inflearn-nextjs.vercel.app', 'search.pstatic.net'],
   },

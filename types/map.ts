@@ -2,7 +2,7 @@ import type { Coordinates } from './store';
 
 export type NaverMap = naver.maps.Map;
 
-export type Marker = {
+export type Marker1 = {
   map: NaverMap;
   coordinates: Coordinates;
   icon?: ImageIcon;

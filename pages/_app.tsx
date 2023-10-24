@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/globals.scss';
 import GlobalModal from '@/components/common/GlobalModal';
 import { modalOpenAtom } from '@/hooks/useModals';
+import StyledComponentsRegistry from '../lib/registry';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

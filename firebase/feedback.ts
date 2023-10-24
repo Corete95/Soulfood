@@ -10,6 +10,7 @@ import { firestore } from './index';
 import { Feedback } from '@/types/feedback';
 
 export const feedbackListCollection = collection(firestore, 'feedbackList');
+export const mapListCollection = collection(firestore, 'mapList');
 
 export async function getFeedbackListFromFirestore(): Promise<Feedback[]> {
   const initialFeedbackList: Feedback[] = [];
@@ -23,6 +24,19 @@ export async function getFeedbackListFromFirestore(): Promise<Feedback[]> {
   });
 
   return initialFeedbackList;
+}
+
+export async function getMapListFromFirestore() {
+  const test: any = [];
+
+  const read = await getDocs(query(mapListCollection));
+
+  read.forEach((doc: any) => {
+    test.push(doc.data());
+  });
+  console.log(read);
+  console.log(test);
+  return test;
 }
 
 export function addFeedbackToFirestore(newFeedback: any): void {

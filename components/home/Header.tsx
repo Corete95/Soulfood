@@ -7,6 +7,7 @@ import styles from '../../styles/header.module.scss';
 import Header from '../common/Header';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
+import { RiAdminLine } from 'react-icons/ri';
 import useToast from '../../hooks/useToast';
 
 const HomeHeader = () => {
@@ -28,6 +29,14 @@ const HomeHeader = () => {
     <Header
       onClickLogo={resetMapOptions}
       rightElements={[
+        <Link
+          href="/admin"
+          key="link"
+          className={styles.box}
+          style={{ marginRight: 8 }}
+        >
+          <RiAdminLine size={20} />
+        </Link>,
         <button
           onClick={replaceAndCopyUrl}
           className={styles.box}

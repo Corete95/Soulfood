@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import type { Marker1 } from '../../types/map';
+import type { MarkerProps } from '../../types/map';
 
-var Marker = ({ map, coordinates, icon, onClick }: Marker1): null => {
+var Marker = ({ map, coordinates, icon, onClick }: MarkerProps): null => {
   useEffect(() => {
     let marker: naver.maps.Marker | null = null;
     if (map) {

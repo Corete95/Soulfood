@@ -28,6 +28,12 @@ export const AdminContainer = styled.div`
       h1 {
         margin-bottom: 50px;
       }
+
+      .loginError {
+        font-size: 14px;
+        color: red;
+        text-align: center;
+      }
     }
   }
 `;

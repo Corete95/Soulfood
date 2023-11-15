@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Header from '@/components/common/Header';
@@ -9,8 +9,11 @@ import useInputs from '@/hooks/useInputs';
 import Button from '@/components/common/Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { authService } from '../../firebase/index';
+import { useRouter } from 'next/router';
 
 const AdminLoginPage: NextPage = () => {
+  const router = useRouter();
+  const [loginError, setLoginError] = useState(false);
   const [form, onChangeForm] = useInputs({
     email: '',
     password: '',
@@ -19,7 +22,12 @@ const AdminLoginPage: NextPage = () => {
   const onLoginSubmit = async (data: any) => {
     try {
       await signInWithEmailAndPassword(authService, data.email, data.password);
+      router.push('/dashboard');
     } catch (e) {
+      setLoginError(true);
+      setTimeout(() => {
+        setLoginError(false);
+      }, 2000);
       console.log('error', e.message);
     }
 
@@ -60,6 +68,9 @@ const AdminLoginPage: NextPage = () => {
                   placeholder="비밀번호 입력"
                   onChange={onChangeForm}
                 />
+                {loginError && (
+                  <p className="loginError">아이디,비밀번호가 틀렸습니다!</p>
+                )}
                 <Button
                   width="300px"
                   margin="20px 0px"

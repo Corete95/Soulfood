@@ -9,3 +9,8 @@ export const DashBoardContainer = styled.div`
   padding: 0;
   background: #fafafa;
 `;
+
+export const Layout = styled.div`
+  display: flex;
+  gap: 32px;
+`;

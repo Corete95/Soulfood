@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import SideBar from '../../../components/common/SideBar';
 import { DashBoardContainer } from '@/styles/admin/adminDashBord';
+import SideBarLayout from '@/components/common/SideBarLayout';
 
 const DashBoardPage = () => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const DashBoardPage = () => {
 
   return (
     <DashBoardContainer>
-      <SideBar />
+      <SideBarLayout>123</SideBarLayout>
     </DashBoardContainer>
   );
 };

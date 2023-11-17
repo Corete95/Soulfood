@@ -24,7 +24,7 @@ const AdminLoginPage: NextPage = () => {
       await signInWithEmailAndPassword(authService, data.email, data.password);
       localStorage.setItem('loginCheck', 'true');
       router.push('/admin/dashboard');
-    } catch (e) {
+    } catch (e: any) {
       setLoginError(true);
       setTimeout(() => {
         setLoginError(false);

@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaHome } from 'react-icons/fa';
+import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaHome } from 'react-icons/fa';
+
+interface Props {
+  toogle: boolean;
+}
 
 const sidebarItem = [
   { name: '홈', href: '/admin/dashboard', icon: FaHome },
-  { name: '맛집 등록', href: '/admin/dashboard', icon: FaHome },
+  { name: '맛집 등록', href: '/admin/registration', icon: FaHome },
   { name: '맛집 관리', href: '/admin/dashboard', icon: FaHome },
   { name: '리뷰 관리', href: '/admin/dashboard', icon: FaHome },
 ];
 
 const SideBar = () => {
+  const [toggle, setToggle] = useState<boolean>(false);
+
+  const toggleHandler = () => {
+    setToggle((prev) => !prev);
+  };
+
   return (
-    <SideBarContainer>
+    <SideBarContainer toogle={toggle}>
+      <button className={toggle ? 'toggleOn' : ''} onClick={toggleHandler}>
+        <MdOutlineKeyboardArrowLeft />
+      </button>
       <aside className="sidebar">
         <div className="sidebarTop">
           <Image
             src="/logo.jpeg"
             className="sidebarLogo"
-            width={80}
-            height={80}
+            width={toggle ? 50 : 80}
+            height={toggle ? 50 : 80}
             alt="logo"
           />
           <p className="sidebarLogoName">인생 맛집</p>
@@ -44,13 +58,36 @@ const SideBar = () => {
 
 export default SideBar;
 
-const SideBarContainer = styled.div`
+const SideBarContainer = styled.div<Props>`
+  position: relative;
+
+  button {
+    position: absolute;
+    right: ${(props) => (props.toogle ? '-11px' : '0px')};
+    top: ${(props) => (props.toogle ? '70px' : '100px')};
+    border: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(50%);
+    font-size: 18px;
+  }
+
+  .toggleOn {
+    transform: rotate(180deg);
+  }
+
   .sidebar {
-    width: 270px;
+    width: ${(props) => (props.toogle ? '85px' : '270px')};
     height: 100%;
     background-color: gainsboro;
     padding: 16px;
-    transition: all 0.3s linear;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     .sidebarTop {
       width: max-content;
@@ -68,9 +105,11 @@ const SideBarContainer = styled.div`
       .sidebarLogoName {
         font-size: 20px;
         font-weight: bold;
+        display: ${(props) => props.toogle && 'none'};
       }
     }
   }
+
   .sidebarLink {
     font-size: 17px;
     text-decoration: none;
@@ -86,6 +125,7 @@ const SideBarContainer = styled.div`
     }
     span:nth-child(2) {
       margin-left: 10px;
+      display: ${(props) => props.toogle && 'none'};
     }
   }
 `;

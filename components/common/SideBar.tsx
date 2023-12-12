@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { FaHome } from 'react-icons/fa';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import { MdOutlineRateReview } from 'react-icons/md';
+import { MdManageAccounts } from 'react-icons/md';
+import { MdFoodBank } from 'react-icons/md';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,9 +14,9 @@ interface Props {
 
 const sidebarItem = [
   { name: '홈', href: '/admin/dashboard', icon: FaHome },
-  { name: '맛집 등록', href: '/admin/registration', icon: FaHome },
-  { name: '맛집 관리', href: '/admin/dashboard', icon: FaHome },
-  { name: '리뷰 관리', href: '/admin/dashboard', icon: FaHome },
+  { name: '맛집 등록', href: '/admin/registration', icon: MdFoodBank },
+  { name: '맛집 관리', href: '/admin/management', icon: MdManageAccounts },
+  { name: '리뷰 관리', href: '/admin/review', icon: MdOutlineRateReview },
 ];
 
 const SideBar = () => {
@@ -85,7 +88,7 @@ const SideBarContainer = styled.div<Props>`
   .sidebar {
     width: ${(props) => (props.toogle ? '85px' : '270px')};
     height: 100%;
-    background-color: gainsboro;
+    background-color: #fff;
     padding: 16px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -116,7 +119,7 @@ const SideBarContainer = styled.div<Props>`
     color: #000;
     padding: 13px 16px;
     display: flex;
-    background-color: #f3f4f6;
+    background-color: #ecf0f4;
     margin-bottom: 16px;
     border-radius: 13px;
 

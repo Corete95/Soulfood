@@ -1,9 +1,6 @@
-import Header from '@/components/home/Header';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import SideBar from '../../../components/common/SideBar';
-import { DashBoardContainer } from '@/styles/admin/adminDashBord';
-import SideBarLayout from '@/components/common/SideBarLayout';
+import DashBordLayout from '@/components/common/DashBordLayout';
 
 const DashBoardPage = () => {
   const router = useRouter();
@@ -14,11 +11,7 @@ const DashBoardPage = () => {
     }
   }, []);
 
-  return (
-    <DashBoardContainer>
-      <SideBarLayout>123</SideBarLayout>
-    </DashBoardContainer>
-  );
+  return <DashBordLayout>홈 페이지</DashBordLayout>;
 };
 
 export default DashBoardPage;

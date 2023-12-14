@@ -1,18 +1,20 @@
 import React from 'react';
 import DashBordLayout from '@/components/common/DashBordLayout';
 import styled from 'styled-components';
-import FilterPage from './filterPage';
+import FilterPage from './FilterPage';
 import SearchPage from './SearchPage';
 import ContentPage from './ContentPage';
+import { GetServerSideProps, NextPage } from 'next';
+import { getFeedbackListFromFirestore } from '@/firebase/feedback';
 
-const index = () => {
+const index: NextPage<any> = ({ initialFeedbackList }) => {
   return (
     <DashBordLayout>
       <ReviewContainer>
         <FilterPage />
         <div className="rightPage">
           <SearchPage />
-          <ContentPage />
+          <ContentPage initialFeedbackList={initialFeedbackList} />
         </div>
       </ReviewContainer>
     </DashBordLayout>
@@ -21,14 +23,19 @@ const index = () => {
 
 export default index;
 
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      initialFeedbackList: await getFeedbackListFromFirestore(),
+    },
+  };
+};
+
 const ReviewContainer = styled.div`
   display: flex;
   gap: 30px;
 
   .rightPage {
     width: 85%;
-    background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   }
 `;

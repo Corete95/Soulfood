@@ -1,12 +1,12 @@
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { ToastContainer } from 'react-toastify';
-import { RecoilRoot, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import SEO from '../seo.config';
 import Script from 'next/script';
 import 'react-toastify/dist/ReactToastify.css';
-import '@/styles/globals.scss';
 import GlobalModal from '@/components/common/GlobalModal';
+import GlobalStyles from '@/styles/GlobalStyles';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -29,6 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
           }}
         />
+        <GlobalStyles />
         <Component {...pageProps} />
         <GlobalModal />
         <ToastContainer />

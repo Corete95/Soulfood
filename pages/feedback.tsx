@@ -12,7 +12,7 @@ interface Props {
   initialFeedbackList: Feedback[];
 }
 
-export const FeedbackPage: NextPage<any> = ({ initialFeedbackList, test }) => {
+export const FeedbackPage: NextPage<any> = ({ initialFeedbackList }) => {
   return (
     <>
       <NextSeo
@@ -42,7 +42,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       initialFeedbackList: await getFeedbackListFromFirestore(),
-      //test: await getMapListFromFirestore(),
     },
   };
 };

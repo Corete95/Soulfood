@@ -1,3 +1,4 @@
+import { styled, css } from 'styled-components';
 const theme = {
   colors: {
     colorName1: '#aabbcc',
@@ -6,3 +7,9 @@ const theme = {
 };
 
 export default theme;
+
+export const Flex = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

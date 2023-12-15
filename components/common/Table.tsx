@@ -96,6 +96,9 @@ const StyledThead = styled.thead<{ thheight: string; fz: string }>`
   }
   & th {
     padding: 0 16px;
+    input {
+      cursor: pointer;
+    }
   }
 `;
 

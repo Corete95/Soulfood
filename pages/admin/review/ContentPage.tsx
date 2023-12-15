@@ -1,20 +1,21 @@
 import Table from '@/components/common/Table';
 import TableBody from '@/components/common/TableBody';
+import { ReviewProps } from '@/types/common';
 import React from 'react';
 import styled from 'styled-components';
+interface Props {
+  reviewList: ReviewProps[];
+}
 
 const widthData = {
-  width1: '48px',
-  width2: '80px',
-  width3: '120px',
-  width4: '1131px',
+  no: '80px',
+  timestamp: '120px',
+  content: '1131px',
 };
 
-const ContentPage = ({ initialFeedbackList }: any) => {
-  const mixData = initialFeedbackList.map((item: any, b: any) => {
-    return Object.assign(item, widthData);
-  });
-  console.log(',,', mixData);
+const ContentPage = ({ reviewList }: Props) => {
+  const reviewData = reviewList.map((item, i) => ({ ...item, no: i + 1 }));
+
   return (
     <ContentContainer>
       <Table
@@ -26,7 +27,11 @@ const ContentPage = ({ initialFeedbackList }: any) => {
         checkBox={true}
         checkBoxSize="15px"
       >
-        <TableBody bodyData={mixData} checkBox={true}></TableBody>
+        <TableBody
+          bodyData={reviewData}
+          widthData={widthData}
+          checkBox={true}
+        ></TableBody>
       </Table>
     </ContentContainer>
   );

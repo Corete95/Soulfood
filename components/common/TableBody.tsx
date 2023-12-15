@@ -1,26 +1,36 @@
+import { ReviewProps } from '@/types/common';
 import React from 'react';
 import styled from 'styled-components';
+interface Props {
+  bodyData: ReviewProps[];
+  widthData: ReviewProps;
+  checkBox: boolean;
+  onChange?: () => void;
+}
 
-const TableBody = ({ bodyData, checkBox = false }: any) => {
-  console.log('...?', bodyData);
-  console.log('!!!', new Array(bodyData.length).fill(0));
+const TableBody = ({
+  bodyData,
+  widthData,
+  checkBox = false,
+  onChange,
+}: Props) => {
+  const name = Object.keys(widthData);
+  const width = Object.values(widthData);
 
-  const test = ['timestamp', 'content', 'width1', 'width2', 'width3', 'width4'];
   return (
     <StyledTableBody>
       {bodyData.map((item, index) => (
         <tr key={index}>
           {checkBox && (
-            <td style={{ width: item.width1 }}>
-              <input type="checkbox" />
+            <td style={{ width: 48 }}>
+              <input type="checkbox" onChange={onChange} />
             </td>
           )}
-          {test.map((b, i) => (
-            <td style={{ width: item[`width${i + 1}`] }}>{item[b]}</td>
+          {name.map((b, i) => (
+            <td key={i} style={{ width: width[i], textAlign: 'left' }}>
+              {item[name[i]]}
+            </td>
           ))}
-          {/* <td style={{ width: item.width2 }}>{index + 1}</td>
-          <td style={{ width: item.width3 }}>{item.timestamp}</td>
-          <td style={{ width: item.width4 }}>{item.content}</td> */}
         </tr>
       ))}
     </StyledTableBody>
@@ -31,11 +41,22 @@ export default TableBody;
 
 const StyledTableBody = styled.div`
   & tr {
-    height: 40px;
+    display: flex;
+    align-items: center;
+    height: 48px;
+
+    &:hover {
+      background-color: #f8f9fb;
+    }
   }
   & td {
     padding: 0 16px;
     font-size: 14px;
     text-align: center;
+    input {
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+    }
   }
 `;

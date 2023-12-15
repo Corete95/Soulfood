@@ -7,14 +7,14 @@ import ContentPage from './ContentPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { getFeedbackListFromFirestore } from '@/firebase/feedback';
 
-const index: NextPage<any> = ({ initialFeedbackList }) => {
+const index: NextPage<any> = ({ reviewList }) => {
   return (
     <DashBordLayout>
       <ReviewContainer>
         <FilterPage />
         <div className="rightPage">
           <SearchPage />
-          <ContentPage initialFeedbackList={initialFeedbackList} />
+          <ContentPage reviewList={reviewList} />
         </div>
       </ReviewContainer>
     </DashBordLayout>
@@ -26,7 +26,7 @@ export default index;
 export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
-      initialFeedbackList: await getFeedbackListFromFirestore(),
+      reviewList: await getFeedbackListFromFirestore(),
     },
   };
 };

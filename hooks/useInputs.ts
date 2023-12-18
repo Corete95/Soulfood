@@ -5,7 +5,14 @@ export default function useInputs(initialState: any) {
 
   const onChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
+    console.log(
+      'test',
+      form.map((item) => item.checkBox)
+    );
+    console.log(name, value, type);
+    console.log('check', e.target.checked);
     if (type === 'checkbox') {
+      console.log('123', form);
       setForm((prev: any) => ({
         ...form,
         [name]: !prev[name],
@@ -13,7 +20,6 @@ export default function useInputs(initialState: any) {
       return;
     }
 
-    // radio, text, password, textarea
     setForm({ ...form, [name]: value });
   };
 

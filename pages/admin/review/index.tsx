@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashBordLayout from '@/components/common/DashBordLayout';
 import styled from 'styled-components';
 import FilterPage from './FilterPage';
@@ -7,21 +7,23 @@ import ContentPage from './ContentPage';
 import { GetServerSideProps, NextPage } from 'next';
 import { getFeedbackListFromFirestore } from '@/firebase/feedback';
 
-const index: NextPage<any> = ({ reviewList }) => {
+const ReviewPage: NextPage<any> = ({ reviewList }) => {
+  const [review, setReview] = useState(reviewList);
+
   return (
     <DashBordLayout>
       <ReviewContainer>
         <FilterPage />
         <div className="rightPage">
           <SearchPage />
-          <ContentPage reviewList={reviewList} />
+          <ContentPage reviewList={review} />
         </div>
       </ReviewContainer>
     </DashBordLayout>
   );
 };
 
-export default index;
+export default ReviewPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   return {

@@ -11,6 +11,8 @@ interface TableProps {
   checkBox?: boolean;
   checkBoxSize?: string;
   fz?: string;
+  handleAllCheck: any;
+  allCheck: boolean;
 }
 
 const Table = ({
@@ -22,6 +24,8 @@ const Table = ({
   scrollPadding = '10px',
   checkBoxSize = '14px',
   checkBox = false,
+  handleAllCheck,
+  allCheck,
   children,
 }: TableProps) => {
   const [mounted, setMounted] = useState(false);
@@ -41,6 +45,8 @@ const Table = ({
               <input
                 type="checkbox"
                 style={{ width: checkBoxSize, height: checkBoxSize }}
+                onChange={(e) => handleAllCheck(e.target.checked)}
+                checked={allCheck}
               />
             </th>
           )}

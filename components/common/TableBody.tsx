@@ -4,13 +4,15 @@ import styled from 'styled-components';
 interface Props {
   bodyData: ReviewProps[];
   widthData: ReviewProps;
+  checkItems: any;
   checkBox: boolean;
-  onChange?: () => void;
+  onChange?: any;
 }
 
 const TableBody = ({
   bodyData,
   widthData,
+  checkItems,
   checkBox = false,
   onChange,
 }: Props) => {
@@ -23,10 +25,15 @@ const TableBody = ({
         <tr key={index}>
           {checkBox && (
             <td style={{ width: 48 }}>
-              <input type="checkbox" onChange={onChange} />
+              <input
+                name="checkBox"
+                type="checkbox"
+                onChange={(e) => onChange(e.target.checked, item.no)}
+                checked={checkItems.includes(item.no) ? true : false}
+              />
             </td>
           )}
-          {name.map((b, i) => (
+          {name.map((_, i) => (
             <td key={i} style={{ width: width[i], textAlign: 'left' }}>
               {item[name[i]]}
             </td>

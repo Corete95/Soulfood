@@ -6,6 +6,7 @@ interface ButtonProps {
   width?: string;
   height?: string;
   margin?: string;
+  border?: string;
   fz?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -17,6 +18,7 @@ const Button = ({
   width = '180px',
   height = '58px',
   margin = '0px',
+  border = 'none',
   fz = '16px',
   disabled = false,
   onClick,
@@ -27,6 +29,7 @@ const Button = ({
       width={width}
       height={height}
       margin={margin}
+      border={border}
       fz={fz}
       disabled={disabled}
       onClick={onClick}
@@ -43,8 +46,9 @@ const ButtonStyle = styled.button<ButtonProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  border: ${(props) => props.border};
   font-size: ${(props) => props.fz};
-  border: none;
   border-radius: 5px;
   background: #ffffff;
+  cursor: pointer;
 `;

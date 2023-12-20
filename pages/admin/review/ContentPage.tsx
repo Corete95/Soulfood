@@ -1,5 +1,7 @@
+import Button from '@/components/common/Button';
 import Table from '@/components/common/Table';
 import TableBody from '@/components/common/TableBody';
+import { deleteFeedBack } from '@/firebase/feedback';
 import useCheckboxes from '@/hooks/useCheckboxes';
 import { ReviewProps } from '@/types/common';
 import React from 'react';
@@ -11,11 +13,11 @@ interface Props {
 const widthData = {
   no: '80px',
   timestamp: '120px',
-  content: '1131px',
+  content: '1104px',
 };
 
 const ContentPage = ({ reviewList }: Props) => {
-  const reviewData = reviewList.map((item, i) => ({
+  const reviewData = reviewList?.map((item, i) => ({
     ...item,
     no: i + 1,
     checkBox: false,
@@ -24,15 +26,39 @@ const ContentPage = ({ reviewList }: Props) => {
   const [checkItems, setCheckItems, handleSingleCheck, handleAllCheck] =
     useCheckboxes(reviewData);
   console.log('reviewData', checkItems);
-  const allCheck = checkItems.length === reviewData.length;
+  const allCheck = checkItems.length === reviewData?.length;
 
+  const handleDeleteReview = () => {
+    const alert = window.confirm('삭제하시겠습니까?');
+    if (alert) {
+      const result = reviewData
+        .filter((doc) => checkItems.includes(doc.no))
+        .map((doc) => doc.id);
+      console.log('RRR', result);
+      deleteFeedBack(result);
+      setCheckItems([]);
+    }
+
+    // console.log('갔나?');
+  };
   return (
     <ContentContainer>
+      <div className="deleteWrapper">
+        <Button
+          width="130px"
+          height="30px"
+          border="1px solid #e5e6e6"
+          disabled={checkItems.length ? false : true}
+          onClick={handleDeleteReview}
+        >
+          삭제
+        </Button>
+      </div>
       <Table
         headdatas={[
           { element: 'No', width: '80px', align: 'left' },
           { element: '시간', width: '120px', align: 'left' },
-          { element: '내용', width: '1131px', align: 'left' },
+          { element: '내용', width: '1104px', align: 'left' },
         ]}
         checkBox={true}
         allCheck={allCheck}
@@ -55,4 +81,9 @@ export default ContentPage;
 
 const ContentContainer = styled.div`
   background-color: #fff;
+
+  .deleteWrapper {
+    text-align: end;
+    background-color: #ecf0f4;
+  }
 `;

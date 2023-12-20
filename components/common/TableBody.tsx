@@ -21,7 +21,7 @@ const TableBody = ({
 
   return (
     <StyledTableBody>
-      {bodyData.map((item, index) => (
+      {bodyData?.map((item, index) => (
         <tr key={index}>
           {checkBox && (
             <td style={{ width: 48 }}>

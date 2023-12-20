@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   limit,
   orderBy,
@@ -19,11 +21,19 @@ export async function getFeedbackListFromFirestore(): Promise<Feedback[]> {
     query(feedbackListCollection, orderBy('timestamp', 'desc'), limit(11 ** 2))
   );
 
-  querySnapshot.forEach((doc: any) => {
-    initialFeedbackList.push(doc.data() as Feedback);
+  querySnapshot.forEach((doc) => {
+    const data: Feedback[] = { ...doc.data(), id: doc.id };
+    initialFeedbackList.push(data);
   });
 
   return initialFeedbackList;
+}
+
+export async function deleteFeedBack(ids: string[]) {
+  ids.forEach(async (result) => {
+    const docRef = doc(firestore, 'feedbackList', result);
+    await deleteDoc(docRef);
+  });
 }
 
 export async function getMapListFromFirestore() {

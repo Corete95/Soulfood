@@ -18,7 +18,7 @@ const FilterPage = () => {
 export default FilterPage;
 
 const FilterContainer = styled.div`
-  width: 15%;
+  width: 200px;
   height: 100%;
   background-color: #fff;
   border-radius: 3px;

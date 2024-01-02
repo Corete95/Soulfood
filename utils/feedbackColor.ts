@@ -24,7 +24,7 @@ export const FEEDBACK_COLOR_SET = {
 } as const;
 
 export const pickThemeByTimestamp = (
-  timestamp: Feedback['timestamp']
+  timestamp: number
 ): keyof typeof FEEDBACK_COLOR_SET => {
   switch (timestamp % 4) {
     case 0:

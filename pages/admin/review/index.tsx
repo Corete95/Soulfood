@@ -8,8 +8,12 @@ import { GetServerSideProps, NextPage } from 'next';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { firestore } from '@/firebase';
 import { getFeedbackListFromFirestore } from '@/firebase/feedback';
+import { ReviewProps } from '@/types/common';
 
-const ReviewPage: NextPage<any> = ({ reviewList }) => {
+interface Props {
+  reviewList: ReviewProps[];
+}
+const ReviewPage: NextPage<Props> = ({ reviewList }) => {
   const [review, setReview] = useState(reviewList);
 
   useEffect(() => {
@@ -18,7 +22,7 @@ const ReviewPage: NextPage<any> = ({ reviewList }) => {
       orderBy('timestamp', 'desc')
     );
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      let itemsArr: any = [];
+      let itemsArr: any[] = [];
       snapshot.forEach((doc) => {
         itemsArr.push({ ...doc.data(), id: doc.id });
       });

@@ -7,6 +7,7 @@ import Script from 'next/script';
 import 'react-toastify/dist/ReactToastify.css';
 import GlobalModal from '@/components/common/GlobalModal';
 import GlobalStyles from '@/styles/GlobalStyles';
+import '../styles/globals.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

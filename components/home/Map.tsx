@@ -46,29 +46,6 @@ const Map = ({
     };
   }, []);
 
-  const ttt = async () => {
-    // const test = await fetch(
-    //   'https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode',
-    //   {
-    //     params: { query: '테헤란로 427' },
-    //     headers: {
-    //       'X-NCP-APIGW-API-KEY-ID': 'w6ey1g6fap',
-    //       'X-NCP-APIGW-API-KEY': 'llUaToGYIOeM8DnCY1852neJrCYv00V09liRqiZ2',
-    //     },
-    //   }
-    // );
-    // const bb = await test.json();
-    // console.log('b', bb);
-    // // naver.maps.Service.geocode(
-    // //   {
-    // //     query: '남산타워',
-    // //   },
-    // //   function (status, response) {
-    // //     console.log(status, response);
-    // //   }
-    // // );
-  };
-
   return (
     <>
       <Script
@@ -78,7 +55,6 @@ const Map = ({
         onReady={initializeMap}
       />
       <div id={mapId} className={styles.map} />
-      <button onClick={ttt}>123</button>
     </>
   );
 };

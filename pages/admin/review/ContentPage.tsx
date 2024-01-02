@@ -11,9 +11,9 @@ interface Props {
 }
 
 const widthData = {
-  no: '80px',
-  timestamp: '120px',
-  content: '1104px',
+  no: '70px',
+  timestamp: '140px',
+  content: '1094px',
 };
 
 const ContentPage = ({ reviewList }: Props) => {
@@ -38,8 +38,6 @@ const ContentPage = ({ reviewList }: Props) => {
       deleteFeedBack(result);
       setCheckItems([]);
     }
-
-    // console.log('갔나?');
   };
   return (
     <ContentContainer>
@@ -56,9 +54,9 @@ const ContentPage = ({ reviewList }: Props) => {
       </div>
       <Table
         headdatas={[
-          { element: 'No', width: '80px', align: 'left' },
-          { element: '시간', width: '120px', align: 'left' },
-          { element: '내용', width: '1104px', align: 'left' },
+          { element: 'No', width: '70px', align: 'left' },
+          { element: '시간', width: '140px', align: 'center' },
+          { element: '내용', width: '1094px', align: 'left' },
         ]}
         checkBox={true}
         allCheck={allCheck}

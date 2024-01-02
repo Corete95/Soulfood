@@ -1,19 +1,20 @@
+import { ReviewProps } from '@/types/common';
 import React, { useState } from 'react';
 
 const useCheckboxes = (data: any) => {
-  const [checkItems, setCheckItems] = useState([]);
+  const [checkItems, setCheckItems] = useState<any>([]);
 
   console.log('checkItems', checkItems);
 
-  const handleSingleCheck = (checked: any, id: any) => {
+  const handleSingleCheck = (checked: boolean, id: string) => {
     if (checked) {
       setCheckItems((prev: any) => [...prev, id]);
     } else {
-      setCheckItems(checkItems.filter((el) => el !== id));
+      setCheckItems(checkItems.filter((el: any) => el !== id));
     }
   };
 
-  const handleAllCheck = (checked: any) => {
+  const handleAllCheck = (checked: boolean) => {
     if (checked) {
       const idArray: any = [];
       data.forEach((el: any) => idArray.push(el.no));

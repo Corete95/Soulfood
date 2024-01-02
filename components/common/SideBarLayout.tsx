@@ -10,7 +10,7 @@ const SideBarLayout = ({ children }: Props) => {
   return (
     <Layout>
       <SideBar />
-      <Header>123</Header>
+      <Header>ㅎ2ㅎ2</Header>
       <div className="content">{children}</div>
     </Layout>
   );

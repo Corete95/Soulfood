@@ -5,6 +5,7 @@ import {
   generateNewFeedback,
 } from '@/firebase/feedback';
 import { Feedback } from '@/types/feedback';
+import { timeConversion } from '@/utils/common';
 
 interface Props {
   newFeedbackContent: string;
@@ -31,7 +32,8 @@ const FeedbackSubmitButton = ({
 
   const appendNewFeedback = useCallback(
     (text: string) => {
-      const newFeedback = generateNewFeedback(text, new Date().getTime());
+      const time = timeConversion();
+      const newFeedback = generateNewFeedback(text, time);
       setFeedbackList((feedbackList) => [newFeedback, ...feedbackList]);
       addFeedbackToFirestore(newFeedback);
       setNewFeedbackContent('');

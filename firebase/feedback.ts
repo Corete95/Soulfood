@@ -22,7 +22,7 @@ export async function getFeedbackListFromFirestore(): Promise<Feedback[]> {
   );
 
   querySnapshot.forEach((doc) => {
-    const data: Feedback[] = { ...doc.data(), id: doc.id };
+    const data: any = { ...doc.data(), id: doc.id };
     initialFeedbackList.push(data);
   });
 

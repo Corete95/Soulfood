@@ -50,7 +50,7 @@ const HomeHeader = () => {
         <Link
           href="/feedback"
           className={styles.box}
-          key="link"
+          key="link1"
           aria-label="피드백 페이지 이동"
         >
           <VscFeedback size={20} />

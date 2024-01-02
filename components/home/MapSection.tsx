@@ -13,6 +13,7 @@ const MapSection = () => {
   const { clearCurrentStore } = useCurrentStore();
 
   const query = useMemo(() => new URLSearchParams(router.asPath.slice(1)), []);
+
   const initialZoom = useMemo(
     () => (query.get('zoom') ? Number(query.get('zoom')) : INITIAL_ZOOM),
     [query]
@@ -37,7 +38,6 @@ const MapSection = () => {
         initialZoom={initialZoom}
         initialCenter={initialCenter}
       />
-      ;
       <Makers />
     </>
   );

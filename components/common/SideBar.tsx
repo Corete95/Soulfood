@@ -7,6 +7,8 @@ import { MdFoodBank } from 'react-icons/md';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
+import { sideBarOpenAtom } from '@/recoil/admin/atom';
 
 interface Props {
   toogle: boolean;
@@ -20,7 +22,7 @@ const sidebarItem = [
 ];
 
 const SideBar = () => {
-  const [toggle, setToggle] = useState<boolean>(false);
+  const [toggle, setToggle] = useRecoilState<boolean>(sideBarOpenAtom);
 
   const toggleHandler = () => {
     setToggle((prev) => !prev);

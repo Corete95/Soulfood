@@ -25,7 +25,7 @@ const ContentPage = ({ reviewList }: Props) => {
 
   const [checkItems, setCheckItems, handleSingleCheck, handleAllCheck] =
     useCheckboxes(reviewData);
-  console.log('reviewData', checkItems);
+
   const allCheck = checkItems.length === reviewData?.length;
 
   const handleDeleteReview = () => {
@@ -34,7 +34,7 @@ const ContentPage = ({ reviewList }: Props) => {
       const result = reviewData
         .filter((doc) => checkItems.includes(doc.no))
         .map((doc) => doc.id);
-      console.log('RRR', result);
+
       deleteFeedBack(result);
       setCheckItems([]);
     }

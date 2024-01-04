@@ -2,13 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { IoSearchOutline } from 'react-icons/io5';
 
-const SearchPage = () => {
+const SearchPage = ({ search, onChangeValue, onSearch }: any) => {
   return (
     <SearchContainer>
       <span>
         <IoSearchOutline />
       </span>
-      <input />
+      <input
+        value={search}
+        onChange={onChangeValue}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' && onSearch) {
+            onSearch();
+          }
+        }}
+      />
     </SearchContainer>
   );
 };

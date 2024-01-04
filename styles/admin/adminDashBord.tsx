@@ -19,10 +19,19 @@ export const Layout = styled.div`
   }
 `;
 
-export const Header = styled.div`
+export const Header = styled.div<{ state: boolean }>`
   position: fixed;
-  left: 271px;
+  left: ${(props) => (props.state ? '86px' : '271px')};
   right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   min-height: 48px;
+  padding: 0px 30px;
   background-color: #fff;
+
+  & p {
+    font-size: 18px;
+    font-weight: bold;
+  }
 `;

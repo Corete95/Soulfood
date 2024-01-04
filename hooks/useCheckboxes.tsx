@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 const useCheckboxes = (data: any) => {
   const [checkItems, setCheckItems] = useState<any>([]);
 
-  console.log('checkItems', checkItems);
-
   const handleSingleCheck = (checked: boolean, id: string) => {
     if (checked) {
       setCheckItems((prev: any) => [...prev, id]);

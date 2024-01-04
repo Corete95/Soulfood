@@ -1,15 +1,28 @@
 import React from 'react';
 import { Flex } from '@/styles/theme';
 import styled from 'styled-components';
+import { FILTER_CHECK } from '@/utils/commonObject';
 
-const filterData = ['전체', '시간순', '가순'];
+const filterData = ['전체', '시간순', '오름차순'];
 
-const FilterPage = () => {
+const FilterPage = ({ params, onChangeFilter }: any) => {
   return (
     <FilterContainer>
       <p>필터 목록</p>
       {filterData.map((item, index) => (
-        <div key={index}>{item}</div>
+        <FilterListContainer
+          key={index}
+          bold={FILTER_CHECK[params] === item}
+          onClick={() =>
+            onChangeFilter(
+              Object.keys(FILTER_CHECK).find(
+                (key) => FILTER_CHECK[key] === item
+              )
+            )
+          }
+        >
+          {item}
+        </FilterListContainer>
       ))}
     </FilterContainer>
   );
@@ -31,13 +44,15 @@ const FilterContainer = styled.div`
     height: 48px;
     border-bottom: 1px solid #e5e7eb;
   }
-  & > div {
-    ${Flex}
-    font-size: 18px;
-    height: 48px;
-    cursor: pointer;
-    &:hover {
-      background-color: #f8f9fb;
-    }
+`;
+
+const FilterListContainer = styled.div<{ bold: boolean }>`
+  ${Flex}
+  font-size: 18px;
+  height: 48px;
+  background-color: ${(props) => props.bold && '#f8f9fb'};
+  cursor: pointer;
+  &:hover {
+    background-color: #f8f9fb;
   }
 `;

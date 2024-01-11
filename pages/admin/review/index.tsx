@@ -1,17 +1,17 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { firestore } from '@/firebase';
 import { getFeedbackListFromFirestore } from '@/firebase/feedback';
 import { ReviewProps } from '@/types/common';
 import { NextRouter, useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import DashBordLayout from '@/components/common/DashBordLayout';
 import styled from 'styled-components';
 import FilterPage from './FilterPage';
 import SearchPage from './SearchPage';
 import ContentPage from './ContentPage';
 import useSearch from '@/hooks/useSearch';
-import { useSearchParams } from 'next/navigation';
 
 interface Props {
   reviewList: ReviewProps[];
@@ -23,18 +23,19 @@ const ReviewPage: NextPage<Props> = ({ reviewList }) => {
     value: '',
     filter: params.get('filter') || 'ALL',
   });
-  const router: any = useRouter();
+  const router: NextRouter = useRouter();
 
   useEffect(() => {
     if (Object.keys(router.query).length > 0) {
-      const result = reviewList.filter((obj) =>
+      const result = reviewList.filter((obj: any) =>
         obj.content.includes(router.query.value)
       );
-      if (router.query.filter) {
+      if (params.get('filter')) {
+        sortBy(result, params.get('filter') || 'ALL');
       }
       return setReview(result);
     }
-  }, [router.query]);
+  }, [router.query, reviewList]);
 
   useEffect(() => {
     const q = query(
@@ -51,6 +52,23 @@ const ReviewPage: NextPage<Props> = ({ reviewList }) => {
 
     return () => unsubscribe();
   }, [onSnapshot]);
+
+  const sortBy = (data: ReviewProps[], params: string) => {
+    const compare = (a: ReviewProps, b: ReviewProps) => {
+      switch (params) {
+        case 'ASCENDING':
+          return a.content.localeCompare(b.name);
+        case 'TIME':
+          const date1 = new Date(+a.timestamp);
+          const date2 = new Date(+b.timestamp);
+          return date2.getTime() - date1.getTime();
+        default:
+          return a.id - b.id;
+      }
+    };
+
+    return data.sort(compare);
+  };
 
   return (
     <DashBordLayout>

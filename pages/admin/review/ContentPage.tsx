@@ -12,8 +12,8 @@ interface Props {
 
 const widthData = {
   no: '70px',
-  timestamp: '140px',
-  content: '1094px',
+  timestamp: '145px',
+  content: '1087px',
 };
 
 const ContentPage = ({ reviewList }: Props) => {
@@ -55,8 +55,8 @@ const ContentPage = ({ reviewList }: Props) => {
       <Table
         headdatas={[
           { element: 'No', width: '70px', align: 'left' },
-          { element: '시간', width: '140px', align: 'center' },
-          { element: '내용', width: '1094px', align: 'left' },
+          { element: '시간', width: '145px', align: 'center' },
+          { element: '내용', width: '1089px', align: 'left' },
         ]}
         checkBox={true}
         allCheck={allCheck}

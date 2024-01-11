@@ -1,7 +1,7 @@
 export interface ReviewProps {
   id?: any;
   no: string | number;
-  timestamp: string;
+  timestamp: string | number;
   content: string;
   width?: string | number;
   [prop: string]: any;

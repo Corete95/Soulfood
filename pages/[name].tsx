@@ -29,7 +29,7 @@ const StoreDetail: NextPage<Props> = ({ store }) => {
       <NextSeo
         title={store.name}
         description="인생맛집 매장 상세 페이지입니다."
-        canonical={`https://next-map-dusky.vercel.app/feedback/${store.name}`}
+        canonical={`https://soulfood-map.vercel.app/feedback/${store.name}`}
       />
       <div className={`${styles.detailSection} ${styles.expanded}`}>
         <DetailHeader

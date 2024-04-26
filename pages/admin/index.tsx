@@ -40,7 +40,7 @@ const AdminLoginPage: NextPage = () => {
       <NextSeo
         title="인생맛집 어드민 로그인"
         description="인생맛집 어드민 로그인 페이지 입니다."
-        canonical="https://next-map-dusky.vercel.app/admin"
+        canonical="https://soulfood-map.vercel.app/admin"
       />
       <Header />
       <main

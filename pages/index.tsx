@@ -22,7 +22,7 @@ const Home: NextPage<Props> = ({ stores }) => {
       <NextSeo
         title="매장 지도"
         description="맛집 매장 지도 서비스입니다."
-        canonical="https://next-map-dusky.vercel.app"
+        canonical="https://soulfood-map.vercel.app"
       />
       <Header />
       <main

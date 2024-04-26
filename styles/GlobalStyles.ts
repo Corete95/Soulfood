@@ -2,10 +2,10 @@ import * as styled from 'styled-components';
 import { reset } from 'styled-reset';
 
 // const styled = { createGlobalStyle };
-
+/* @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css); */
 const GlobalStyles = styled.createGlobalStyle`
   ${reset}
-  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
   @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')

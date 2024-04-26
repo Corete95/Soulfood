@@ -65,6 +65,7 @@ const AdminLoginPage: NextPage = () => {
                 />
                 <LabelInput
                   name="password"
+                  type="password"
                   labelText="비밀번호"
                   placeholder="비밀번호 입력"
                   onChange={onChangeForm}

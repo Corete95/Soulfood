@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://next-map-dusky.vercel.app
+Host: https://soulfood-map.vercel.app/
 
 # Sitemaps
-Sitemap: https://next-map-dusky.vercel.app/sitemap.xml
+Sitemap: https://soulfood-map.vercel.app/sitemap.xml
